@@ -1,6 +1,8 @@
 package co.edu.udea.studyapp;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,17 +24,32 @@ public class MateriasFragment extends Fragment {
     RecyclerView recyclerView;
     MateriaAdapter materiaAdapter;
     List<Materia> materiasList;
+    ClickInterface clickInterface;
 
     public MateriasFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Activity activity = (Activity) context;
+        try {
+            clickInterface = (ClickInterface) activity;
+        } catch(ClassCastException e){
+            Log.d("Error", "ClickInterface");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_materias, container, false);
+    }
+
+    public void setInterface(ClickInterface clickInterface) {
+        this.clickInterface = clickInterface;
     }
 
     @Override
@@ -44,6 +61,7 @@ public class MateriasFragment extends Fragment {
                     @Override public void onItemClick(View view, int position) {
                         if(position == 0){
                             Log.d("Se clickeó", "Computación Móvil");
+                            clickInterface.cardClicked("materia", 0);
                         } else if(position == 1){
                             Log.d("Se clickeó", "Teoría de Lenguajes y Compiladores");
                         } else if(position == 2){

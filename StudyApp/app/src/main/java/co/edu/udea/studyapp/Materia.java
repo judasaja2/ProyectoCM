@@ -20,28 +20,28 @@ public class Materia {
         return id;
     }
 
-    public String getNombreMateria() {
-        return nombreMateria;
-    }
-
-    public String getFechaPublicacion() {
-        return fechaPublicacion;
-    }
-
-    public int getImage() {
-        return image;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNombreMateria() {
+        return nombreMateria;
     }
 
     public void setNombreMateria(String nombreMateria) {
         this.nombreMateria = nombreMateria;
     }
 
+    public String getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
     public void setFechaPublicacion(String fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
+    }
+
+    public int getImage() {
+        return image;
     }
 
     public void setImage(int image) {

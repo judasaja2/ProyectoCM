@@ -37,7 +37,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaV
         Materia materia = materiaList.get(position);
 
         holder.textViewMateria.setText(materia.getNombreMateria());
-        holder.textViewFechaPublicacion.setText(materia.getFechaPublicacion());
+        holder.textViewFechaPublicacion.setText("Último apunte publicado:" + materia.getFechaPublicacion());
 
         holder.imageView.setImageDrawable(mContext.getResources().getDrawable(materia.getImage()));
     }

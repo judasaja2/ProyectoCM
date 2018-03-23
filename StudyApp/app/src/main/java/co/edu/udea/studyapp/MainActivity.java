@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,7 +17,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ClickInterface {
+
+    Fragment fragmentoGenerico;
+    FragmentManager fragmentManager = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,14 +83,11 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-
-        Fragment fragmentoGenerico = null;
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
+        fragmentoGenerico = null;
         int id = item.getItemId();
 
         if (id == R.id.nav_perfil) {
-            // Handle the camera action
+            fragmentoGenerico = new PerfilFragment();
         } else if (id == R.id.nav_materias) {
             fragmentoGenerico = new MateriasFragment();
         } else if (id == R.id.nav_grupos) {
@@ -107,5 +108,23 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void cardClicked(String mensaje, int card) {
+        fragmentoGenerico = null;
+        if(mensaje.equals("materia")){
+            if(card == 0){
+                fragmentoGenerico = new ApunteFragment();
+            }
+        }
+        if (fragmentoGenerico != null) {
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragmentoGenerico)
+                    .commit();
+        }
+        Log.d("Hola", "Hola hola");
+        //do your code here
     }
 }
