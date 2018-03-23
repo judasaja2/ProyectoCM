@@ -14,10 +14,6 @@ import java.util.List;
  * Created by Xjuan on 23/03/2018.
  */
 
-/*
-RecyclerView.Adapter
-RecyclerView.ViewHolder
- */
 public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaViewHolder> {
 
     private Context mContext;
@@ -42,7 +38,6 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.MateriaV
 
         holder.textViewMateria.setText(materia.getNombreMateria());
         holder.textViewFechaPublicacion.setText(materia.getFechaPublicacion());
-
 
         holder.imageView.setImageDrawable(mContext.getResources().getDrawable(materia.getImage()));
     }
